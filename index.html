@@ -473,6 +473,9 @@
       justify-self: end;
       align-self: start;
     }
+    footer > div {
+      min-width: 0;
+    }
     .logo {
       height: 88px;
       width: auto;
@@ -489,6 +492,15 @@
     }
     footer .logo svg .cls-1 {
       fill: #3fbab7;
+    }
+    footer .logo {
+      width: min(100%, 220px);
+      height: auto;
+    }
+    footer .logo svg {
+      width: 100%;
+      height: auto;
+      max-width: 100%;
     }
     @media (max-width: 720px) {
       .nav {
@@ -599,6 +611,9 @@
         grid-column: auto;
         justify-self: start;
         align-self: start;
+      }
+      footer .logo {
+        width: min(100%, 180px);
       }
     }
   </style>
