@@ -377,7 +377,7 @@
   </style>
   <link rel="stylesheet" href="chatbot.css" />
 </head>
-<body>
+<body data-newsletter-high-intent="true">
   <nav class="nav">
     <div class="logo" aria-label="ARIANNA">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 206.8 67.1" role="img" aria-label="ARIANNA logo">
@@ -523,105 +523,7 @@
       </form>
     </div>
   </div>
-  <script>
-    (function () {
-      var overlay = document.getElementById("newsletterOverlay");
-      var closeButton = overlay ? overlay.querySelector(".newsletter-close") : null;
-      function openOverlay() {
-        if (!overlay) return;
-        overlay.classList.add("is-visible");
-        overlay.setAttribute("aria-hidden", "false");
-      }
-      function closeOverlay() {
-        if (!overlay) return;
-        overlay.classList.remove("is-visible");
-        overlay.setAttribute("aria-hidden", "true");
-      }
-      var subscribed = window.localStorage.getItem("arianna_newsletter_subscribed") === "true";
-      var dismissed = window.localStorage.getItem("arianna_newsletter_dismissed") === "true";
-      var lastShown = Number(window.localStorage.getItem("arianna_newsletter_shown_at") || 0);
-      var now = Date.now();
-      if (!subscribed && !dismissed && (!lastShown || now - lastShown >= 60000)) {
-        setTimeout(function () {
-          openOverlay();
-          window.localStorage.setItem("arianna_newsletter_shown_at", String(Date.now()));
-        }, 5000);
-      }
-      var form = overlay ? overlay.querySelector(".newsletter-form") : null;
-      if (form) {
-        form.addEventListener("submit", function () {
-          window.localStorage.setItem("arianna_newsletter_subscribed", "true");
-          closeOverlay();
-        });
-      }
-      if (closeButton) closeButton.addEventListener("click", function () {
-        window.localStorage.setItem("arianna_newsletter_dismissed", "true");
-        closeOverlay();
-      });
-      if (overlay) overlay.addEventListener("click", function (event) {
-        if (event.target === overlay) {
-          window.localStorage.setItem("arianna_newsletter_dismissed", "true");
-          closeOverlay();
-        }
-      });
-    })();
-  </script>
-  <script>
-    (function () {
-      var dropdowns = document.querySelectorAll(".nav-dropdown");
-      if (!dropdowns.length) return;
-
-      function isMobileNav() {
-        return window.matchMedia("(max-width: 720px)").matches;
-      }
-
-      function closeAll(exceptNode) {
-        dropdowns.forEach(function (dropdown) {
-          if (dropdown !== exceptNode) dropdown.classList.remove("is-open");
-        });
-      }
-
-      dropdowns.forEach(function (dropdown) {
-        var toggle = dropdown.querySelector(".nav-dropdown-toggle");
-        if (!toggle) return;
-
-        toggle.addEventListener("click", function (event) {
-          if (!isMobileNav()) return;
-          if (!dropdown.classList.contains("is-open")) {
-            event.preventDefault();
-            closeAll(dropdown);
-            dropdown.classList.add("is-open");
-          } else {
-            dropdown.classList.remove("is-open");
-          }
-        });
-      });
-
-      document.addEventListener("click", function (event) {
-        if (!isMobileNav()) return;
-        dropdowns.forEach(function (dropdown) {
-          if (!dropdown.contains(event.target)) dropdown.classList.remove("is-open");
-        });
-      });
-
-      window.addEventListener("resize", function () {
-        if (!isMobileNav()) closeAll();
-      });
-    })();
-  </script>
-  <script>
-    (function () {
-      fetch("content/book-a-demo.json")
-        .then(function (res) { return res.json(); })
-        .then(function (data) {
-          Object.keys(data).forEach(function (key) {
-            var el = document.querySelector('[data-cms-key="' + key + '"]');
-            if (el) el.textContent = data[key];
-          });
-        })
-        .catch(function () {});
-    })();
-  </script>
+  <script src="site-shell.js"></script>
   <script src="attribution.js"></script>
   <script src="chatbot.js"></script>
 </body>
