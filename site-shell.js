@@ -23,6 +23,141 @@
     }
   }
 
+  function initSharedFooter() {
+    var footer = document.querySelector("footer");
+    if (!footer) return;
+
+    if (!document.getElementById("site-footer-styles")) {
+      var style = document.createElement("style");
+      style.id = "site-footer-styles";
+      style.textContent = [
+        "footer.site-footer {",
+        "  padding: 0 8vw 60px;",
+        "  background: #0b1823;",
+        "  color: rgba(255, 255, 255, 0.7);",
+        "  display: flex;",
+        "  gap: 48px;",
+        "  justify-content: flex-end;",
+        "  align-items: flex-start;",
+        "}",
+        "footer.site-footer .footer-brand {",
+        "  margin-right: auto;",
+        "}",
+        "footer.site-footer .footer-brand-title {",
+        "  margin: 12px 0 0;",
+        "  color: #ffffff;",
+        "  font-family: \"Merriweather\", \"Iowan Old Style\", \"Times New Roman\", serif;",
+        "  font-size: clamp(24px, 3vw, 36px);",
+        "  line-height: 1.1;",
+        "}",
+        "footer.site-footer .footer-brand-body {",
+        "  margin: 10px 0 0;",
+        "  max-width: 320px;",
+        "}",
+        "footer.site-footer .footer-brand-link {",
+        "  display: inline-flex;",
+        "  align-items: center;",
+        "}",
+        "footer.site-footer .footer-brand-link svg {",
+        "  display: block;",
+        "  width: min(100%, 238px);",
+        "  height: auto;",
+        "}",
+        "footer.site-footer .footer-brand-link svg path,",
+        "footer.site-footer .footer-brand-link svg polygon,",
+        "footer.site-footer .footer-brand-link svg rect {",
+        "  fill: #ffffff;",
+        "}",
+        "footer.site-footer .footer-brand-link svg .cls-1 {",
+        "  fill: #3fbab7;",
+        "}",
+        "footer.site-footer h4 {",
+        "  color: white;",
+        "  margin: 0 0 10px;",
+        "}",
+        "footer.site-footer p {",
+        "  margin: 0 0 8px;",
+        "  color: rgba(255, 255, 255, 0.7);",
+        "  font-size: 14px;",
+        "  line-height: 1.5;",
+        "}",
+        "footer.site-footer a {",
+        "  color: inherit;",
+        "  text-decoration: none;",
+        "  transition: color 0.2s ease;",
+        "}",
+        "footer.site-footer a:hover {",
+        "  color: #1aa5a7;",
+        "}",
+        "footer.site-footer .footer-contact {",
+        "  justify-self: end;",
+        "  align-self: start;",
+        "}",
+        "@media (max-width: 720px) {",
+        "  footer.site-footer {",
+        "    display: grid;",
+        "    grid-template-columns: 1fr;",
+        "    justify-content: start;",
+        "    gap: 16px;",
+        "    padding: 32px 8vw 40px;",
+        "  }",
+        "  footer.site-footer .footer-brand {",
+        "    margin-right: 0;",
+        "  }",
+        "  footer.site-footer .footer-company,",
+        "  footer.site-footer .footer-contact {",
+        "    grid-column: auto;",
+        "    justify-self: start;",
+        "    align-self: start;",
+        "  }",
+        "}"
+      ].join("\n");
+      document.head.appendChild(style);
+    }
+
+    footer.classList.add("site-footer");
+    footer.innerHTML = [
+      '<div class="footer-brand">',
+      '  <a class="footer-brand-link" aria-label="ARIANNA" href="index.html">',
+      '    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 206.8 67.1" role="img" aria-label="ARIANNA logo">',
+      '      <defs>',
+      '        <style>',
+      '          .cls-1 { fill: #3fbab7; }',
+      '        </style>',
+      '      </defs>',
+      '      <g>',
+      '        <g id="Laag_1">',
+      '          <polygon points="162.1 20.4 159.4 20.4 159.4 31.2 147.7 20.5 147.7 37 150.4 37 150.4 26.3 162.1 36.9 162.1 20.4"/>',
+      '          <path d="M197.8,25.8l2.9,6.3h-5.9l3-6.3ZM189.3,37h2.9l1.3-2.7h8.5l1.3,2.7h2.9l-8.4-16.5-8.4,16.5Z"/>',
+      '          <path d="M136.5,32h-5.9l3-6.3,3,6.3ZM125.1,37h2.9l1.3-2.7h8.5l1.3,2.7h2.9l-8.4-16.5-8.5,16.5Z"/>',
+      '          <polygon points="183.6 20.4 181 20.4 181 31.2 169.3 20.5 169.3 37 172 37 172 26.3 183.6 36.9 183.6 20.4"/>',
+      '          <path d="M98.7,22.7h4.8c.6,0,1.2.1,1.6.4.4.2.7.6.9.9.2.3.3.7.4,1.1,0,.4,0,.7,0,1,0,.5,0,1-.3,1.4-.2.4-.4.7-.7,1-.3.3-.6.5-1,.6-.4.1-.7.2-1,.2h-4.8v-6.5ZM102.6,31.6c.7.9,1.3,1.9,2,2.8.6.9,1.3,1.7,1.9,2.6h3.1c-1.3-1.8-2.6-3.5-3.9-5.3l-.3-.3.4-.2c1-.4,1.8-1.1,2.5-2,.6-.9.9-2,.9-3.2s-.1-1.6-.4-2.3c-.3-.7-.7-1.3-1.1-1.8-.5-.5-1.1-.9-1.8-1.2-.7-.3-1.5-.4-2.3-.4h-7.5v16.6h2.7v-5.5h3.8Z"/>',
+      '          <rect x="116.3" y="20.4" width="2.7" height="16.6"/>',
+      '          <path d="M85.8,32h-5.9l3-6.3,3,6.3ZM74.4,37h2.9l1.3-2.7h8.5l1.3,2.7h2.9l-8.5-16.5-8.4,16.5Z"/>',
+      '          <path class="cls-1" d="M56.8,56.5V.8H1v55.7h20.5v-3.1H4.1V3.9h49.6v49.5h-14.3v-5.6h8.7V9.5H9.7v38.3h13.2c2.4,0,3.9.5,4.7,1.5,1,1.5.8,4.3-.7,8.3-1,2.8-.5,5.7,1.2,7.4,1,.9,2.3,1.4,3.8,1.4s2.8-.4,3.7-.8l-1.2-2.9c-1.9.7-3.4.7-4.3,0-.9-.8-1-2.5-.4-4.1,1.9-5.2,2-8.8.3-11.2-1.3-1.9-3.7-2.8-7.2-2.8h-10.1V12.6h32.2v32.2h-8.7v11.8h20.5Z"/>',
+      '          <polygon class="cls-1" points="36.3 21.3 36.3 36.1 21.5 36.1 21.5 30 30.7 30 30.7 26.9 18.4 26.9 18.4 39.2 39.4 39.2 39.4 18.2 18.4 18.2 18.4 21.3 36.3 21.3"/>',
+      '        </g>',
+      '      </g>',
+      '    </svg>',
+      '  </a>',
+      '  <p class="footer-brand-title">See ARIANNA in action</p>',
+      '  <p class="footer-brand-body">Book a tailored demo to explore vulnerability management workflows for your industry.</p>',
+      '</div>',
+      '<div>',
+      '  <h4><a href="company.html">Company</a></h4>',
+      '  <p><a href="company.html#about">About ARIANNA</a></p>',
+      '  <p><a href="company.html#careers">Careers</a></p>',
+      '  <p><a href="resources.html">Resources</a></p>',
+      '</div>',
+      '<div class="footer-contact">',
+      '  <h4><a href="contact.html">Contact</a></h4>',
+      '  <p><a href="support.html">Support</a></p>',
+      '  <p><a href="mailto:hello@ariannateam.ai">hello@ariannateam.ai</a></p>',
+      '  <p><a href="tel:+393313482583">+39 331 3482583</a></p>',
+      '</div>'
+    ].join("\n");
+  }
+
   function initNewsletterOverlay() {
     var overlay = document.getElementById("newsletterOverlay");
     if (!overlay) return;
@@ -136,6 +271,7 @@
   }
 
   onReady(function () {
+    initSharedFooter();
     initNewsletterOverlay();
     initMobileNav();
   });
